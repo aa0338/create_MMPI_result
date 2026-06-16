@@ -98,7 +98,7 @@ with left_col:
 
         ax.set_ylim(20, 120)
         ax.set_yticks(np.arange(20, 121, 10))
-        ax.set_title("MMPI_profile_input MMPI-2 검사결과")
+        # ax.set_title("MMPI_profile_input MMPI-2 검사결과")
         ax.grid(True, axis="y", alpha=0.3)
         ax.axhline(y=65, linewidth=0.5, color="black")
         
