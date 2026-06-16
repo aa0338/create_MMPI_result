@@ -63,6 +63,14 @@ work_data.loc[work_data["y"] == "", "y"] = pd.NA
 # 숫자로 변환 가능한 값만 숫자로 저장
 work_data["y_num"] = pd.to_numeric(work_data["y"], errors="coerce")
 
+# trin(T/F)의 T/F 값 저장
+trin_tf_value = ""
+
+trin_tf_rows = work_data.loc[work_data["x"] == "trin(T/F)", "y"]
+
+if not trin_tf_rows.empty and pd.notna(trin_tf_rows.iloc[0]):
+    trin_tf_value = str(trin_tf_rows.iloc[0])
+
 # 규칙
 # 1. 숫자인 행은 유지
 # 2. 빈칸 행은 유지 (가운데 끊김용)
@@ -100,19 +108,19 @@ with left_col:
         ax.set_yticks(np.arange(20, 121, 10))
         # ax.set_title("MMPI_profile_input MMPI-2 검사결과")
         ax.grid(True, axis="y", alpha=0.3)
-        ax.axhline(y=65, linewidth=0.5, color="black")
+        ax.axhline(y=65, linewidth=0.2, color="black")
         
         separator_idx = plot_data.index[plot_data["x"].eq("")][0]
 
         ax.axvline(
             x=separator_idx,
             color="black",
-            linewidth=0.5,
+            linewidth=0.3,
             linestyle="--"
         )
 
         # 기준선
-        ax.axhline(65, color="black", linewidth=1)
+        ax.axhline(65, color="black", linewidth=0.6)
 
         # 점수 표시
         for i, row in plot_data.iterrows():
@@ -125,6 +133,10 @@ with left_col:
                 label = str(int(y_value))
             else:
                 label = str(y_value)
+
+            # TRIN에는 trin(T/F) 값을 뒤에 붙임
+            if row["x"] == "TRIN" and trin_tf_value != "":
+                label = label + trin_tf_value
 
             ax.text(
                 i,
