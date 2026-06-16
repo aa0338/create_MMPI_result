@@ -92,6 +92,15 @@ with left_col:
         ax.set_title("MMPI_profile_input MMPI-2 검사결과")
         ax.grid(True, axis="y", alpha=0.3)
         ax.axhline(y=65, linewidth=0.5, color="black")
+        
+        separator_idx = plot_data.index[plot_data["x"].eq("")][0]
+
+        ax.axvline(
+            x=separator_idx,
+            color="black",
+            linewidth=0.5,
+            linestyle="--"
+        )
 
         # 기준선
         ax.axhline(65, color="black", linewidth=1)
