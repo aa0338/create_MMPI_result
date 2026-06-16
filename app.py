@@ -8,7 +8,15 @@ warnings.filterwarnings("ignore")
 
 st.set_page_config(page_title="MMPI-2 프로파일 그래프", layout="wide")
 
-plt.rc("font", family="Malgun Gothic")
+font_candidates = ["NanumGothic", "Nanum Gothic", "DejaVu Sans"]
+
+available_fonts = {f.name for f in fm.fontManager.ttflist}
+
+for font_name in font_candidates:
+    if font_name in available_fonts:
+        plt.rc("font", family=font_name)
+        break
+
 plt.rcParams["axes.unicode_minus"] = False
 
 
