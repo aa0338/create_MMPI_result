@@ -8,7 +8,7 @@ warnings.filterwarnings("ignore")
 
 st.set_page_config(page_title="MMPI-2 프로파일 그래프", layout="wide")
 
-plt.rc("font", family="D2Coding")
+plt.rc("font", family="Malgun Gothic")
 plt.rcParams["axes.unicode_minus"] = False
 
 
